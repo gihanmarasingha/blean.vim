@@ -19,7 +19,7 @@ import Mathlib.tactic
 
 def foo (n : Nat) : n = n := by
   induction' n with d hd
-  · sorry 
+  · sorry
   · sorry]]
   end))
 

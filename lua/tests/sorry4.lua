@@ -32,7 +32,7 @@ example (p q : Prop) : p ∧ q ↔ q ∧ p := by
     assert.contents.are[[
 example (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
-  · sorry 
-  · sorry ]]
+  · sorry
+  · sorry]]
   end))
 end)

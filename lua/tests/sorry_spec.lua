@@ -10,7 +10,7 @@ import Mathlib.tactic
 def foo (n : Nat) : n = n := by
   induction' n with d hd]], function()
     vim.api.nvim_command('normal! 3gg$')
---    helpers.wait_for_line_diagnostics()
+    helpers.wait_for_line_diagnostics()
 
     vim.api.nvim_command('normal! 2gg$')
     require('lean.sorry').fill()

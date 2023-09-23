@@ -91,7 +91,7 @@ end]]
   end))
 
   it('lean indents sorry blocks when needed',
-    clean_buffer("lean3", [[
+    clean_buffer("lean", [[
 def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
 
@@ -103,9 +103,8 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
     assert.contents.are[[
 def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
- 
+
  · sorry
  · sorry]]
   end))
-
 end)

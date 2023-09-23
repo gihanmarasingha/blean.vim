@@ -96,9 +96,10 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
 
 ]], function()
-    vim.api.nvim_command('normal! 3gg$')
+    vim.api.nvim_command('normal! gg$')
     helpers.wait_for_line_diagnostics()
 
+    vim.api.nvim_command('normal! 3gg0')
     require('lean.sorry').fill()
     assert.contents.are[[
 def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
@@ -107,4 +108,17 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
  · sorry
  · sorry]]
   end))
+
+  it('lean3 does nothing if there are no goals', clean_buffer("lean3", [[
+def foo (n : nat) : n = n := begin
+  refl,
+end]], function()
+    vim.api.nvim_command('normal! 2gg$')
+    require('lean.sorry').fill()
+    assert.contents.are[[
+def foo (n : nat) : n = n := begin
+  refl,
+end]]
+  end))
+
 end)

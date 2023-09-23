@@ -66,7 +66,6 @@ def foo (n : nat) : n = n := begin
 end]]
   end))
 
-
   it('lean leaves the cursor in the first sorry', clean_buffer("lean", [[
 def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor]], function()
@@ -80,6 +79,20 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
   · bar
   · sorry]]
+  end))
+
+  it('lean leaves the cursor in the only sorry', clean_buffer("lean", [[
+def foo (p q : Prop) : p ∧ q →  q ∧ p := by
+  intro h]], function()
+    helpers.wait_for_line_diagnostics()
+
+    vim.api.nvim_command('normal! 2gg$')
+    require('lean.sorry').fill()
+    vim.api.nvim_command('normal! cebar')
+    assert.contents.are[[
+def foo (p q : Prop) : p ∧ q →  q ∧ p := by
+  intro h
+  bar]]
   end))
 
   it('lean3 indents sorry blocks when needed',

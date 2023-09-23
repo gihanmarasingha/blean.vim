@@ -105,8 +105,8 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
 def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
 
- · sorry
- · sorry
+  · sorry
+  · sorry
  ]]
   end))
 

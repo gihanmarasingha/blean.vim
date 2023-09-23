@@ -107,7 +107,7 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
 
   · sorry
   · sorry
- ]]
+]]
   end))
 
   it('lean3 does nothing if there are no goals', clean_buffer("lean3", [[

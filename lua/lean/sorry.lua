@@ -25,6 +25,7 @@ function sorry.fill()
   local responses = vim.lsp.buf_request_sync(0, '$/lean/plainGoal', params)
   local sorrytext, offset
 
+  if not responses then return end
   for _, response in pairs(responses) do
     if not response.result or not response.result.goals or vim.tbl_isempty(response.result.goals) then return end
     local goals = #response.result.goals

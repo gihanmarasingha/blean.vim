@@ -21,7 +21,7 @@ def foo (n : nat) : n = n := begin
 end]]
   end))
 
-  it('lean inserts sorries for each remaining goal', clean_buffer('lean', [[
+  it('lean inserts sorries for each of multiple remaining goals', clean_buffer('lean', [[
 example (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor]],
   function()
@@ -34,6 +34,18 @@ example (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
   · sorry
   · sorry]]
+  end))
+
+  it('lean inserts a sorry for the remaining goal', clean_buffer('lean', [[
+example (p : Prop) : p → p := by]],
+  function()
+    helpers.wait_for_line_diagnostics()
+
+    vim.api.nvim_command('normal! gg$')
+    require('lean.sorry').fill()
+    assert.contents.are[[
+example (p : Prop) : p → p := by
+sorry]]
   end))
 
   it('lean3 leaves the cursor in the first sorry', clean_buffer("lean3", [[

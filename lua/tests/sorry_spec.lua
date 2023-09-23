@@ -135,6 +135,26 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
 ]]
   end))
 
+  it('lean single goal within multiple goal block',
+    clean_buffer("lean", [[
+def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
+  constructor
+  · intro h
+  · sorry
+]], function()
+    vim.api.nvim_command('normal! 3gg$')
+    helpers.wait_for_line_diagnostics()
+
+    require('lean.sorry').fill()
+    assert.contents.are[[
+def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
+  constructor
+  · intro h
+    sorry
+  · sorry
+]]
+  end))
+
   it('lean3 does nothing if there are no goals', clean_buffer("lean3", [[
 def foo (n : nat) : n = n := begin
   refl,

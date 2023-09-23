@@ -66,7 +66,7 @@ def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
     assert.contents.are[[
 def foo (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
-  · bar 
+  · bar
   · sorry]]
   end))
 end)

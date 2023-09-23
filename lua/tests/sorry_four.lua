@@ -3,7 +3,7 @@ local clean_buffer = helpers.clean_buffer
 
 require('lean').setup {}
 
-describe('sorry', function()
+describe('sorry_four', function()
   it('lean 3: inserts sorries for each remaining goal', clean_buffer("lean3", [[
 def foo (n : nat) : n = n := begin
   induction n with d hd,

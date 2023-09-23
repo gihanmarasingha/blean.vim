@@ -32,7 +32,7 @@ function sorry.fill()
       local index = vim.api.nvim_win_get_cursor(0)[1]
       local indent = calculate_indent(index)
 
-      if vim.bo.filteype == "lean3" then
+      if vim.bo.filetype == "lean3" then
 	  sorrytext = "{ sorry },"
 	  offset = 2
       elseif goals == 1 then

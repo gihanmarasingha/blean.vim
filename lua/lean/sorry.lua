@@ -33,14 +33,14 @@ function sorry.fill()
       local indent = calculate_indent(index)
 
       if vim.bo.filetype == "lean3" then
-	  sorrytext = "{ sorry },"
-	  offset = 2
+	sorrytext = "{ sorry },"
+	offset = 2
       elseif goals == 1 then
-	  sorrytext = "  sorry"
-	  offset = 2
+	sorrytext = "sorry"
+	offset = 0
       else
-	  sorrytext = "· sorry"
-	  offset = 3
+	sorrytext = "· sorry"
+	offset = 3
       end
       local lines = tbl_repeat(indent .. sorrytext, goals)
       vim.api.nvim_buf_set_lines(0, index, index, true, lines)
